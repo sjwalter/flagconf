@@ -28,7 +28,7 @@ module.exports = function(desc, flags, argv) {
 
   argv = argv || require('optimist').argv;
 
-  if (argv.h || argv['help']) return showHelp_(flags);
+  if (argv.h || argv['help']) return showHelp_(desc, flags);
   
   var configFile = argv.f || argv['config-file'];
   var config = {};
