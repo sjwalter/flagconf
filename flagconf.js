@@ -17,13 +17,16 @@ function showHelp_(desc, flags) {
 
 function assignValue_(config, configSpec, value) {
   var tmp = config;
-  for(var i = 0; i < configSpec.length - 1; i++) {
-    if (!tmp[configSpec[i]]) {
-      tmp[configSpec[i]] = {};
-      tmp = tmp[configSpec[i]];
+  configSpec.forEach(function(fragment, index) {
+    if (index === configSpec.length - 1) {
+      tmp[fragment] = value;
+    } else {
+      if (!tmp[fragment]) {
+        tmp[fragment] = {};
+      }
+      tmp = tmp[fragment];
     }
-  }
-  tmp = value;
+  });
 };
 
 module.exports = function(desc, flags, argv) {
