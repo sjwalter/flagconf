@@ -4,7 +4,7 @@ function showHelp_(desc, flags) {
   flags.forEach(function(flag) {
     console.log('\t-' + flag['short'] + ' | --' + flag['long']);
     console.log('\t\t\t' + flag.desc +
-        (flag['default'] ? '(Default: ' + flag['default'] + ')' : ''));
+        (flag['default'] ? ' (Default: ' + flag['default'] + ')' : ''));
 
   });
   console.log('\t-f | --config-file');
@@ -12,15 +12,18 @@ function showHelp_(desc, flags) {
   console.log('\t-h | --help');
   console.log('\t\t\tYou\'re staring at it');
   console.log();
+  process.exit(1);
 };
 
 function assignValue_(config, configSpec, value) {
+  var tmp = config;
   for(var i = 0; i < configSpec.length - 1; i++) {
-    if (!config[configSpec[i]]) {
-      config[configSpec[i]] = {};
+    if (!tmp[configSpec[i]]) {
+      tmp[configSpec[i]] = {};
+      tmp = tmp[configSpec[i]];
     }
   }
-  config[configSpec[i]] = value;
+  tmp = value;
 };
 
 module.exports = function(desc, flags, argv) {
