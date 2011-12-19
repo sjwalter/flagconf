@@ -1,0 +1,5 @@
+{
+    "name": "flagconf",
+    "description": "A command line flag and config file helper",
+    "version": "0.0.1"
+}
