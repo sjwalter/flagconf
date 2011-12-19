@@ -41,7 +41,7 @@ module.exports = function(desc, flags, argv) {
     if (value) {
       assignValue_(config, flag.configVal, value);
     }
-  }):
+  });
 
   return config;
 };
